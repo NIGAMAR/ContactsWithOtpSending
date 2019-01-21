@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ContactsWithOtpSending</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="message_list">Message List</string>
+    <string name="contact_list">Contact List</string>
+    <string name="permission_denied_message">OTP cannot be generated since permission to send sms is denied</string>
+    <string name="otp_generated">Hi your OTP is</string>
+</resources>

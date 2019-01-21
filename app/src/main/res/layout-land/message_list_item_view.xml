@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" android:id="@+id/cardView">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/message_item_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:padding="20dp">
+
+        <TextView
+                android:text="Arpit Nigam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/name_txt_view"
+                android:textSize="18sp"
+                android:fontFamily="@font/noto_sans" android:includeFontPadding="false"
+                android:textAlignment="textStart"
+                app:layout_constraintTop_toTopOf="@+id/otp_txt_view"
+                app:layout_constraintBottom_toBottomOf="@+id/otp_txt_view"
+                app:layout_constraintStart_toEndOf="@+id/otp_txt_view" android:layout_marginStart="108dp"
+                app:layout_constraintVertical_bias="0.562"/>
+
+
+        <TextView
+                android:text="123456"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/otp_txt_view" android:textSize="36sp"
+                android:fontFamily="@font/noto_sans" android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                tools:layout_editor_absoluteY="-2dp" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+                android:text="Sent 2 mins ago"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/timeAgo"
+                android:fontFamily="@font/noto_sans"
+                android:textAlignment="textStart"
+                app:layout_constraintTop_toTopOf="@+id/name_txt_view"
+                app:layout_constraintBottom_toBottomOf="@+id/name_txt_view" app:layout_constraintVertical_bias="0.666"
+                app:layout_constraintStart_toEndOf="@+id/name_txt_view" android:layout_marginStart="172dp"
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"/>
+        <androidx.constraintlayout.widget.Barrier android:layout_width="wrap_content"
+                                                  android:layout_height="wrap_content" android:id="@+id/barrier3"
+                                                  app:barrierDirection="end" tools:layout_editor_absoluteY="20dp"
+                                                  tools:layout_editor_absoluteX="711dp"/>
+        <androidx.constraintlayout.widget.Barrier android:layout_width="wrap_content"
+                                                  android:layout_height="wrap_content" android:id="@+id/barrier5"
+                                                  app:barrierDirection="left" tools:layout_editor_absoluteY="20dp"
+                                                  tools:layout_editor_absoluteX="711dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

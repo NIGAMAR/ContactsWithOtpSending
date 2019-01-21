@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/contactList">
+
+    <fragment android:id="@+id/contactList"
+              android:name="com.nigamar.contactswithotpsending.ui.home.contactlist.ContactList"
+              android:label="Contacts"
+              tools:layout="@layout/contact_list_fragment">
+        <action android:id="@+id/toContactDetails"
+                app:destination="@id/contactDetails"/>
+    </fragment>
+    <fragment android:id="@+id/contactDetails"
+              android:name="com.nigamar.contactswithotpsending.ui.info.contactdetails.ContactDetails"
+              android:label="Contact Details" tools:layout="@layout/contact_details_fragment">
+        <action android:id="@+id/toComposeMessage"
+                app:destination="@id/composeMessage"/>
+        <argument
+                android:name="contactId"
+                app:argType="integer"
+                android:defaultValue="0"/>
+    </fragment>
+    <fragment
+            android:name="com.nigamar.contactswithotpsending.ui.info.composemessage.ComposeMessage"
+            tools:layout="@layout/compose_message_fragment" android:id="@+id/composeMessage" android:label="Compose">
+        <action android:id="@+id/toContactList" app:destination="@id/contactList" app:popUpTo="@id/contactList"/>
+        <argument android:name="contactName" app:argType="string" android:defaultValue='"Random"'/>
+    </fragment>
+    <fragment android:id="@+id/messageDetails"
+              android:name="com.nigamar.contactswithotpsending.ui.home.messagedetails.MessageDetails"
+              android:label="Messages Sent"
+              tools:layout="@layout/message_details_fragment"/>
+</navigation>
