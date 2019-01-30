@@ -1,13 +1,11 @@
 package com.nigamar.contactswithotpsending.ui.home
 
 import android.app.Activity
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -87,5 +85,21 @@ class MainActivity : AppCompatActivity() {
     private fun unregisterReceivers() {
         unregisterReceiver(smsSentReceiver)
         unregisterReceiver(smsDeliveredReceiver)
+    }
+
+    override fun onBackPressed() {
+        val navController = findNavController(R.id.nav_host_fragment);
+        val canBePopped = navController.popBackStack()
+        if(!canBePopped) {
+            val alertDialog = AlertDialog.Builder(this)
+                .setMessage(" Are you sure you want to exit ")
+                .setPositiveButton("Ok") { dialog, which ->
+                    finish()
+                }
+                .setNegativeButton("Cancel"){ dialog, which ->
+                    // nothing to do
+                }.create()
+            alertDialog.show()
+        }
     }
 }
