@@ -30,7 +30,6 @@ class ComposeMessage : ScopedFragment(),KodeinAware {
     private val viewModelFactory: ComposeMessageViewModelFactory by instance()
     private lateinit var viewModel: ComposeMessageViewModel
     private var otp:Int=0
-    private val smsManager:SmsManager = SmsManager.getDefault()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,9 +85,6 @@ class ComposeMessage : ScopedFragment(),KodeinAware {
                 viewModel.sendTextMessage(messageObj)
                 viewModel.insertMesage(sendMessage)
             }
-//            val sentIntent = PendingIntent.getBroadcast(context, 0, Intent(SMS_SENT), 0)
-//            val deliveredIntent = PendingIntent.getBroadcast(context, 0, Intent(SMS_DELIVERED), 0)
-//            smsManager.sendTextMessage(CONTACT_NUMBER_PERM,null,message,sentIntent,deliveredIntent)
         }
     }
 
