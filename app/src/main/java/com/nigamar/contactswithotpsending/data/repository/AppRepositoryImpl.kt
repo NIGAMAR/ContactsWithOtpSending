@@ -5,12 +5,19 @@ import com.nigamar.contactswithotpsending.data.db.dao.ContactsDao
 import com.nigamar.contactswithotpsending.data.db.dao.MessagesDao
 import com.nigamar.contactswithotpsending.data.db.entities.Contact
 import com.nigamar.contactswithotpsending.data.db.entities.SentMessage
+import com.nigamar.contactswithotpsending.data.network.MessageObj
+import com.nigamar.contactswithotpsending.data.network.NexmoSmsService
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class AppRepositoryImpl(private val contactsDao: ContactsDao, private val messagesDao: MessagesDao) : AppRepository {
+class AppRepositoryImpl(private val contactsDao: ContactsDao, private val messagesDao: MessagesDao, private val nexmoSmsService: NexmoSmsService) : AppRepository {
+    override suspend fun sendTextMessage(messageObj: MessageObj) {
+        GlobalScope.launch {
+            nexmoSmsService.sendSms(messageObj.from,messageObj.to,messageObj.text)
+        }
+    }
 
     override suspend fun insertMessage(message: SentMessage) {
         GlobalScope.launch {

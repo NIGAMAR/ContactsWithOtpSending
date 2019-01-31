@@ -3,6 +3,7 @@ package com.nigamar.contactswithotpsending
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.nigamar.contactswithotpsending.data.db.AppDb
+import com.nigamar.contactswithotpsending.data.network.NexmoSmsService
 import com.nigamar.contactswithotpsending.data.repository.AppRepository
 import com.nigamar.contactswithotpsending.data.repository.AppRepositoryImpl
 import com.nigamar.contactswithotpsending.internals.ContactsHelper
@@ -24,7 +25,8 @@ class ContactsApplication : Application(),KodeinAware {
         bind() from singleton { AppDb.getAppDb(instance()) }
         bind() from singleton { instance<AppDb>().getContactsDao() }
         bind() from singleton { instance<AppDb>().getMessageDao() }
-        bind<AppRepository>() with singleton { AppRepositoryImpl(instance(),instance()) }
+        bind() from singleton { NexmoSmsService.createService() }
+        bind<AppRepository>() with singleton { AppRepositoryImpl(instance(),instance(),instance()) }
         bind() from singleton { ContactsHelper(instance(),instance()) }
         bind() from provider { ContactsViewModelFactory(instance()) }
         bind() from provider { ComposeMessageViewModelFactory(instance()) }

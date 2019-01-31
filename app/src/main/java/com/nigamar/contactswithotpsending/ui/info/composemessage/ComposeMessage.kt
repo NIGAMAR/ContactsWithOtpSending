@@ -10,22 +10,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
-
-
+import com.nigamar.contactswithotpsending.BuildConfig
 import com.nigamar.contactswithotpsending.R
 import com.nigamar.contactswithotpsending.data.db.entities.SentMessage
 import com.nigamar.contactswithotpsending.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.compose_message_fragment.*
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import org.threeten.bp.OffsetDateTime
-import kotlin.random.Random
-import android.content.Intent
-import android.app.PendingIntent
+import com.nigamar.contactswithotpsending.data.network.MessageObj
 import com.nigamar.contactswithotpsending.internals.*
+
 
 
 class ComposeMessage : ScopedFragment(),KodeinAware {
@@ -85,11 +82,13 @@ class ComposeMessage : ScopedFragment(),KodeinAware {
         sendOtp.setOnClickListener {
             launch {
                 val sendMessage=SentMessage(otp,contactName,OffsetDateTime.now())
+                val messageObj= MessageObj("Arpit Nigam",BuildConfig.CONTACT_NUMBER,message)
+                viewModel.sendTextMessage(messageObj)
                 viewModel.insertMesage(sendMessage)
             }
-            val sentIntent = PendingIntent.getBroadcast(context, 0, Intent(SMS_SENT), 0)
-            val deliveredIntent = PendingIntent.getBroadcast(context, 0, Intent(SMS_DELIVERED), 0)
-            smsManager.sendTextMessage(CONTACT_NUMBER_PERM,null,message,sentIntent,deliveredIntent)
+//            val sentIntent = PendingIntent.getBroadcast(context, 0, Intent(SMS_SENT), 0)
+//            val deliveredIntent = PendingIntent.getBroadcast(context, 0, Intent(SMS_DELIVERED), 0)
+//            smsManager.sendTextMessage(CONTACT_NUMBER_PERM,null,message,sentIntent,deliveredIntent)
         }
     }
 

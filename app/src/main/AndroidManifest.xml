@@ -3,6 +3,7 @@
           package="com.nigamar.contactswithotpsending">
 
     <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
             android:allowBackup="true"
